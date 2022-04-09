@@ -10,17 +10,15 @@ from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
 from flask import abort
-# import os
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6c' # for other projest use os for  enviromente variable and hide all sensitive information pass keys, etc.
-# print(app.config['SECRET_KEY'])
-# print(os.environ.get("SECRET_KEY_CONFIG"))
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY") # for other projest use os for  enviromente variable and hide all sensitive information pass keys, etc.
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///blog.db")
 db = SQLAlchemy(app)
 
 # Login manager config
