@@ -13,7 +13,9 @@ from flask import abort
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY_CONFIG")
+app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6c' # for other projest use os for  enviromente variable and hide all sensitive information pass keys, etc.
+# print(app.config['SECRET_KEY'])
+# print(os.environ.get("SECRET_KEY_CONFIG"))
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
