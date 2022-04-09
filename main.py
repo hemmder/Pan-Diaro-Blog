@@ -13,13 +13,23 @@ from flask import abort
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY") # for other projest use os for  enviromente variable and hide all sensitive information pass keys, etc.
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
 ##CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///blog.db")
 db = SQLAlchemy(app)
+
+# Gravatar - Images profile
+gravatar = Gravatar(app,
+                    size=100,
+                    rating='g',
+                    default='retro',
+                    force_default=False,
+                    force_lower=False,
+                    use_ssl=False,
+                    base_url=None)
 
 # Login manager config
 login_manager = LoginManager()
@@ -82,15 +92,7 @@ def admin_only(f):
     return decorated_function
 
 
-# Gravatar - Images profile
-gravatar = Gravatar(app,
-                    size=100,
-                    rating='g',
-                    default='retro',
-                    force_default=False,
-                    force_lower=False,
-                    use_ssl=False,
-                    base_url=None)
+
 
 @app.route('/')
 def get_all_posts():
