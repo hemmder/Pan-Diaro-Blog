@@ -20,7 +20,7 @@ Bootstrap(app)
 CURRENT_YEAR = datetime.now().year
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL2", "sqlite:///blog.db")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_NEW_URL", "sqlite:///blog.db")
 db = SQLAlchemy(app)
 
 # Gravatar - Images profile
